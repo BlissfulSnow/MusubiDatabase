@@ -9,7 +9,7 @@ const db = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"Myhopeis1",
-    database:"mangaschema"
+    database:"beaconschema"
 });
 
 
@@ -21,16 +21,8 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/books", (req, res) => {
-    const q = "SELECT * FROM mangatable";
-    db.query(q, (err, data) => {
-        if(err) return res.json(err);
-        return res.json(data);
-    });
-});
-
-app.get("/anime", (req, res) => {
-    const q = "SELECT * FROM animetable";
+app.get("/food", (req, res) => {
+    const q = "SELECT * FROM food";
     db.query(q, (err, data) => {
         if(err) return res.json(err);
         return res.json(data);
@@ -38,30 +30,30 @@ app.get("/anime", (req, res) => {
 });
 
 
-app.post("/books", (req, res) => {
-    const q = "INSERT INTO mangatable (`mangaTitle`, `mangaDesc`, `mangaCover`) VALUES (?)";
+app.post("/food", (req, res) => {
+    const q = "INSERT INTO food (`FOOD_NAME`, `FOOD_DESC`, `DATA_SOURCE`) VALUES (?)";
     const values = [
-         req.body.mangaTitle,
-         req.body.mangaDesc,
-         req.body.mangaCover,
+         req.body.FOOD_NAME,
+         req.body.FOOD_DESC,
+         req.body.DATA_SOURCE,
     ];
 
     db.query(q, [values], (err, data) => {
         if(err) return res.json(err);
-        return res.json("Book Has Been Created");
+        return res.json("Food Has Been Added");
     });
 });
 
 
-app.delete("/books/:mangaID", (req, res) => {
-    const bookID = req.params.mangaID;
-    const q = "DELETE FROM mangatable WHERE mangaID = ?"
+// app.delete("/food/:foodID", (req, res) => {
+//     const fID = req.params.foodID;
+//     const q = "DELETE FROM food WHERE foodID = ?"
 
-    db.query(q, [bookID], (err, data) => {
-        if(err) return res.json(err);
-        return res.json("Book Has Been Deleted!");
-    });
-});
+//     db.query(q, [fID], (err, data) => {
+//         if(err) return res.json(err);
+//         return res.json("Food Has Been Deleted!");
+//     });
+// });
 
 
 app.listen(8080, () =>{
