@@ -2,7 +2,7 @@ import React from 'react'
 
 const Add = () => {
   return (
-    <div>TODO</div>
+    <div>DO SOON</div>
   )
 }
 
