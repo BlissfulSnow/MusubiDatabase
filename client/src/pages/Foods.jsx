@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import DataTable from 'react-data-table-component'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Foods = () => {
 
@@ -45,6 +45,10 @@ const Foods = () => {
         <DataTable columns={column} data={foods}>
 
         </DataTable>
+
+        <button className='button1'>
+                <Link to="/add" className='addtext'>Add New Food</Link>
+        </button>
     </div>;
 
 };
